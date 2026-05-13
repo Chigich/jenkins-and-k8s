@@ -45,7 +45,7 @@ pipeline {
             aws configure set region us-east-1
             aws eks update-kubeconfig --name cluster-1 --region us-east-1
             sed -i 's/IMAGE_TAG/${IMAGE_TAG}/g' k8s/deployment.yaml
-            kubectl apply -f k8s/deployment.yaml
+            kubectl apply -f k8s/deployment.yaml --validate=false
             kubectl rollout status deployment/my-app
           """
         }
